@@ -2,10 +2,19 @@ import {PlistParser} from 'mac-defaults'
 
 const documentDivider = Array(80).fill('-').join('')
 
+/**
+ * @param {string} data
+ */
 const separateDocuments = data => data.split(documentDivider).slice(1)
 
+/**
+ * @param {string} str
+ */
 const separateLines = str => str.split('\n\t')
 
+/**
+ * @param {string} data
+ */
 const normalizeData = data => {
   return (
     data
@@ -17,6 +26,9 @@ const normalizeData = data => {
   )
 }
 
+/**
+ * @param {string} str
+ */
 const normalizeKey = str => {
   return (
     str.slice(0, 1).toLowerCase() +
@@ -26,6 +38,9 @@ const normalizeKey = str => {
   )
 }
 
+/**
+ * @param {string} data
+ */
 const parse = data => {
   const normalizedData = normalizeData(data)
   return (
@@ -36,6 +51,9 @@ const parse = data => {
             .reduce((obj, line) => {
               const k = normalizeKey(line.slice(0, line.indexOf(':')).trim())
               const v = line.slice(line.indexOf(':') + 1).trim()
+              /**
+               * @type {Record<string, any>}
+               */
               const o = {}
               o[k] = k === 'plistCommon' ? new PlistParser({plist: v}).start() : v;
               if (k.length > 0) {
@@ -45,7 +63,7 @@ const parse = data => {
               }
             }, {})
         ])
-      }, [])
+      }, /** @type {Record<string, any>[]} */ ([]))
   )
 }
 
