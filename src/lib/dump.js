@@ -1,6 +1,6 @@
-const exec = require('child_process').execFile
-const binary = require('./defaultPath.js')
-const parse = require('./parser.js')
+import {execFile as exec} from 'node:child_process'
+import binary from './defaultPath.js'
+import parse from './parser.js'
 
 const dump = () => {
   return new Promise((resolve, reject) => {
@@ -12,4 +12,4 @@ const dump = () => {
   })
 }
 
-module.exports = dump
+export {dump}

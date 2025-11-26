@@ -1,4 +1,4 @@
-const PlistParser = require('macos-defaults/PlistParser')
+import {PlistParser} from 'mac-defaults'
 
 const documentDivider = Array(80).fill('-').join('')
 
@@ -49,4 +49,4 @@ const parse = data => {
   )
 }
 
-module.exports = parse
+export default parse

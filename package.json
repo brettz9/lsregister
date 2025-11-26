@@ -2,13 +2,18 @@
   "name": "lsregister",
   "version": "1.0.0",
   "description": "Interact with Launch Services database",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "type": "module",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./dist/index.cjs"
+  },
   "scripts": {
     "sample": "node sample",
     "lint": "eslint .",
     "test": "echo 'tests not available'",
     "prebuild": "npm run lint && npm test && rimraf dist",
-    "build": "babel --ignore *.test.js --out-dir dist src",
+    "build": "rollup -c",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -27,10 +32,12 @@
     "@eslint/js": "^9.39.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
-    "rimraf": "6.1.2"
+    "rimraf": "6.1.2",
+    "rollup": "^4.53.3"
   },
   "files": [
     "dist",
+    "src",
     "README.md"
   ],
   "eslintConfig": {
@@ -49,9 +56,6 @@
   "engines": {
     "node": ">= 8.0.0"
   },
-  "dependencies": {
-    "macos-defaults": "https://github.com/brettz9/macOS-defaults#openwith"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rogerbf/lsregister.git"
@@ -61,6 +65,9 @@
   },
   "homepage": "https://github.com/rogerbf/lsregister#readme",
   "bin": {
-    "lsregister-json": "./dist/bin/cli.js"
+    "lsregister-json": "./src/bin/cli.js"
+  },
+  "dependencies": {
+    "mac-defaults": "^2.0.0"
   }
 }

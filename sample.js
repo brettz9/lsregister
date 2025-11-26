@@ -1,4 +1,4 @@
-const lsregister = require('./src/index')
+import * as lsregister from './src/index.js'
 
 ;(async () => {
 try {

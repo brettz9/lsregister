@@ -1,5 +1,3 @@
-const dump = require('./lib/dump.js')
+import {dump} from './lib/dump.js'
 
-module.exports = {
-  dump
-}
+export {dump}

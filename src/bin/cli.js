@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const lsregister = require('../index.js')
+import lsregister from '../index.js'
 
 lsregister.dump()
   .then(data => {
